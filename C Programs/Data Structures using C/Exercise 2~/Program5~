@@ -1,0 +1,106 @@
+5.  Write  a  program  to  implement  insert,  delete,  search  &  display  in  queue  through linked  list  representation.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct queue
+{int data;
+ struct queue *next;
+}*n,*front,*rear;
+
+void insert(int item)
+{
+n=(struct queue*)malloc(sizeof(struct queue));
+if(n==NULL)
+printf("\already full");
+else
+{n->data=item;
+ if(front==NULL)
+ front=rear=n;
+ else
+ {rear->next=n;
+  rear=n;
+  }
+ rear->next=NULL;
+ }
+}
+
+void delete()
+{
+int del;
+struct queue *tmp;
+if(front==NULL)
+printf("empty queue");
+else
+{del=front->data;
+ tmp=front;
+ if(front==rear)
+ front=rear=NULL;
+ else
+ front=front->next;
+ printf("deleted item is %d",del);
+ free(tmp);
+ }
+}
+
+void search()
+{
+struct queue *ptr;
+int ele;
+if(front==NULL)
+{printf("\n Queue is empty"); }
+else
+{
+printf("\nEnter the elements to be searched :");
+scanf("%d",&ele);
+for(ptr=front;ptr!=NULL;ptr=ptr->next)
+{if (ptr->data==ele)
+ {printf("Number found at the location = %d",ptr); }
+ else
+ {printf("Number not found"); }
+  }
+ }
+}
+
+void display()
+{
+struct queue *ptr;
+if(front==NULL)
+printf("nothing to display");
+else
+{for(ptr=front;ptr!=NULL;ptr=ptr->next)
+printf("%d\t",ptr->data);}
+}
+
+void main()
+{
+front=rear=NULL;
+int ch,item;
+while(1)
+{printf("\n1. Insert element");
+ printf("\n2. Delete element");
+ printf("\n3. Search");
+ printf("\n4. Display");
+ printf("\n5. Exit");
+ printf("\n Choose operation:");
+ scanf("%d",&ch);
+ switch(ch)
+ {case 1: printf("enter element:");
+				  scanf("%d",&item);
+				  insert(item);
+				  break;
+  case 2: delete();
+				  break;
+  case 3: search();
+                break;
+  case 4: display();
+				  break;
+  case 5: exit(1);
+  }
+ }
+getch();
+}
+
+

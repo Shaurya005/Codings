@@ -1,0 +1,76 @@
+2.  Write  a  program  to  implement  linear  search  in  linked  list.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+ int info;
+ struct node *next;
+}*p,*q;
+typedef struct node node;
+
+node *create(node *start)
+{
+ char ch;
+ do{
+  p=(node*)malloc(sizeof(node));
+  if(p==NULL)
+  printf("Overeflow");
+  else{
+   printf("Enter the info:");
+   scanf("%d",&p->info);
+   if(start!=NULL)
+   {
+    q->next=p;
+    q=p;
+   }
+   else
+   start=q=p;
+   printf("wanna insert another node?(y/n):");
+   fflush(stdin);
+   ch=getchar();
+  }
+ }while(ch!='n');
+ q->next=NULL;
+ return start;
+}
+
+void display(node *start)
+{
+ node *ptr;
+ printf("Elements of link list are....\n");
+ for(ptr=start;ptr!=NULL;ptr=ptr->next)
+ printf("%d\n",ptr->info);
+}
+
+	//SEARCHING
+
+void Lsearch(node *start,int item)
+{
+ node *ptr=start;
+ int n=1;
+ while(ptr!=NULL && ptr->info!=item)
+ {
+  ptr=ptr->next;
+  n++;
+  }
+  if(ptr==NULL)
+  printf("not present");
+  else
+  printf("item found at %dth place",n);
+}
+
+void main()
+{
+	int item;
+	node *start=NULL;
+	start=create(start);
+	display(start);
+	printf("enter item to be searched:");
+	scanf("%d",&item);
+	Lsearch(start,item);
+   getch();
+}

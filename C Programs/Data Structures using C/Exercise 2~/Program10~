@@ -1,0 +1,78 @@
+10.   Write  a  program  to  convert  infix  expression  into  postfix  expression.
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<string.h>
+char infix[20],postfix[20];
+struct stack
+{char info;
+ struct stack *next;
+}*s,*top=NULL;
+typedef struct stack stk;
+void push(char symbol)
+{s=(stk*)malloc(sizeof(stk));
+	s->info=symbol;
+	s->next=top;
+	top=s;
+}
+
+char pop()
+{ char poped;
+	stk *tmp;
+	poped=top->info;
+	tmp=top;
+	top=top->next;
+	free(tmp);
+	return poped;
+}
+
+int priority(char symbol)
+{if(symbol=='^')
+ return 3;
+ else if(symbol=='/' || symbol=='*')
+ return 2;
+ else if(symbol=='+' || symbol=='-')
+ return 1;
+ else
+ return 0;
+}
+
+void intopost()
+{ char symbol;
+	int i,k=0;
+	push('(');
+	for(i=0;i<strlen(infix);i++);
+	infix[i]=')';
+	for(i=0;i<strlen(infix);i++)
+	{ char del;
+		symbol=infix[i];
+       if((symbol<='9'||(int)symbol<=122)&&(symbol>='0'||(int)symbol>=97))
+			postfix[k++]=symbol;
+		else if(symbol=='(')
+			push(symbol);
+		else if(symbol==')')
+		{ while(top->info!='(')
+			postfix[k++]=pop();
+			del=pop();
+		   }
+		else
+		{while(top!=NULL && (priority(top->info)>=priority(symbol)))
+			postfix[k++]=pop();
+	      push(symbol);
+		  }
+	}
+	postfix[k]='\0';
+}
+
+void main()
+{ clrscr();
+   printf("Enter Infix:");
+	gets(infix);
+	intopost();
+	printf("Postfix is:");
+	puts(postfix);
+	getch();
+}

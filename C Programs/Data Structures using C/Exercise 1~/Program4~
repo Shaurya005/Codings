@@ -1,0 +1,45 @@
+4. Write a program for string matching.
+
+
+
+#include "stdio.h"
+#include "conio.h"
+#include "string.h"
+void main()
+{ void match(char str1[],char str2[]);     //function declaration
+char str1[50],str2[50];
+int s;
+clrscr();
+printf("Enter string 1 and string 2\n");
+scanf("%s%s",&str1,&str2);
+s=match(str1,str2);
+if(s==-1)
+printf("\nNo match found");
+else
+printf("\nThe location where the first match occured is %d",s);
+getch();
+}
+
+void match(char str1[],char str2[])
+{ int i,j;
+for(i=0;i<strlen(str2);i++)
+{ for(j=0;j<strlen(str1);j++)
+ { if(str2[i]==str1[j])
+  { return j+1; } } }
+ }
+
+
+
+
+
+output 1:
+
+Enter string 1 and string 2 hello world 
+The location where the first match occured is 5
+
+Output 2:
+
+Enter string 1 and string 2 ice smooth 
+No match found
+
+

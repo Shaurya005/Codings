@@ -1,0 +1,54 @@
+7.  Write  a  function  to  reverse  a  string  using  stack.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+struct stack
+{
+	int info;
+	struct stack *next;
+}*n,*top=NULL,*tmp;
+typedef struct stack stack;
+void push(char item)
+{
+	n=(stack*)malloc(sizeof(stack));
+	if(n==NULL)
+	printf("overflow");
+	else
+	{
+		n->info=item;
+		n->next=top;
+		top=n;
+	}
+}
+char pop()
+{
+	char del;
+	if(top==NULL)
+	printf("underflow");
+	else
+	{
+		del=top->info;
+		tmp=top;
+		top=top->next;
+		free(tmp);
+	}
+	return del;
+}
+void main()
+{
+	char str[20];
+	int i;
+	printf("enter a string...\n");
+	gets(str);
+	for(i=0;i<strlen(str);i++)
+	push(str[i]);
+	for(i=0;i<strlen(str);i++)
+	str[i]=pop();
+	printf("reverse of string is...\n");
+	puts(str);
+	getch();
+}

@@ -1,0 +1,58 @@
+3.  Write  a  program  to  implement  linked  list  representation  of  binary  search  tree.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+struct tree
+{
+ int info;
+ struct tree *left;
+ struct tree *right;
+}*root,*p;
+typedef struct tree Tree;
+
+Tree *insert(Tree *r,Tree *p)
+{
+  if(r==NULL)
+  r=p;
+  else if(p->info<r->info)
+  r->left=insert(r->left,p);
+  else
+  r->right=insert(r->right,p);
+}
+
+void inorder(Tree *r)
+{
+ if(r!=NULL)
+ {
+  inorder(r->left);
+  printf("\t%d",r->info);
+  inorder(r->right);
+ }
+}
+
+void main()
+{
+ char ch;
+ root=NULL;
+ do{
+  p=(Tree*)malloc(sizeof(Tree));
+  p->left=NULL;
+  p->right=NULL;
+  printf("Enter the info\n");
+  fflush(stdin);
+  scanf("%d",&p->info);
+  if(root==NULL)
+  root=p;
+  else
+  insert(root,p);
+  printf("Do you want another node?(y/n):");
+  fflush(stdin);
+  ch=getchar();
+ }while(ch!='n');
+ printf("inorder:");
+ inorder(root);
+ getch();
+}

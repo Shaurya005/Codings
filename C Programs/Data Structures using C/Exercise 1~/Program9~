@@ -1,0 +1,103 @@
+9. Write recursive functions to calculate factorial, n raised by power of p & fibonacii series.
+
+
+
+
+
+#include<stdio.h>
+#include<conio.h>
+
+int fact(int n)
+{if(n==1)
+ return 1;
+ else
+ return(n*fact(n-1));
+}
+
+int power(int base,int exp)
+{if ( exp!=1 )
+ return (base*power(base,exp-1));
+}
+
+void printFibonacci(int n)
+{static long int first=0,second=1,sum;
+ if(n>0)
+ {sum = first + second;
+  first = second;
+  second = sum;
+  printf("%ld ",sum);
+  printFibonacci(n-1); }
+}
+
+void main()
+{int num,f,base,exp,k,n,ch;
+ long int i=0,j=1,f;
+ clrscr();
+ printf("*****MENU*****");
+ printf("\n 1.Factorial ");
+ printf("\n 2.Power of base x ");
+ printf("\n 3.Fibonacci Series ");
+ printf("\n 4.EXIT ");
+ printf("\n Enter your choice ");
+ scanf("%d",&ch);
+ switch(ch)
+ {
+ case 1: {printf("Enter a number: ");
+               scanf("%d",&num);
+               f=fact(num);
+               printf("\nFactorial of %d is: %d",num,f);
+               break;
+               }
+case 2: {printf("Enter base number: ");
+              scanf("%d",&base);
+              printf("Enter power number(positive integer): ");
+              scanf("%d",&exp);
+              printf("%d^%d = %d", base, exp, power(base, exp));
+              break;
+               }
+case 3: {printf("Enter the range of the Fibonacci series: ");
+              scanf("%d",&n);
+              printf("Fibonacci Series: ");
+              printf("%d %d ",0,1);
+              printFibonacci(n);
+              break;
+              }
+case 4: {exit(0);
+              break;
+               }
+   }
+getch();
+}
+
+
+OUTPUT::
+
+*****MENU*****
+1.Factorial
+2.Power of base x
+3.Fibonacci Series
+4.EXIT
+Enter your choice 1
+Enter a number: 5 
+Factorial of 5 is: 120
+
+*****MENU*****
+1.Factorial
+2.Power of base x
+3.Fibonacci Series
+4.EXIT
+Enter your choice 2
+Enter base number: 5 
+Enter power number(positive integer): 3 
+5^3 = 125
+
+*****MENU*****
+1.Factorial
+2.Power of base x
+3.Fibonacci Series
+4.EXIT
+Enter your choice 3
+Enter the range of the Fibonacci series: 9 
+Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 55
+
+

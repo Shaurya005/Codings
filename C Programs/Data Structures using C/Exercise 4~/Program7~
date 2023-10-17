@@ -1,0 +1,27 @@
+7.  Write  a  program  to  implement  Sequential  representation  of  Graph.
+
+
+
+//... A Program to represent a Graph by using an Adjacency Matrix method # include < stdio.h > # include < conio.h > 
+
+void main() { int option; clrscr(); do {		printf("\n A Program to represent a Graph by using an "); 		printf("Adjacency Matrix method \n "); 		printf("\n 1. Directed Graph "); 		printf("\n 2. Un-Directed Graph "); 		printf("\n 3. Exit "); 		printf("\n\n Select a proper option : "); 		scanf("%d", &option); 		switch(option) 		{ 			case 1 : dir_graph(); 				 break; 			case 2 : undir_graph(); 				 break; 			case 3 : exit(0); 		} // switch 	}while(1); } // main
+
+int dir_graph() { 	int adj_mat[50][50]; 	int n; 	int in_deg, out_deg, i, j; 	printf("\n How Many Vertices ? : "); 	scanf("%d", &n); 	read_graph (adj_mat, n); 	printf("\n Vertex \t In_Degree \t Out_Degree \t Total_Degree "); 	for (i = 1; i < = n ; i++ ) 	{ 		in_deg = out_deg = 0; 		for ( j = 1 ; j <= n ; j++ ) 		{ 			if ( adj_mat[j][i] == 1 ) 				in_deg++; 		} // for 		for ( j = 1 ; j <= n ; j++ ) 			if (adj_mat[i][j] == 1 ) 				out_deg++; 		printf("\n\n %5d\t\t\t%d\t\t%d\t\t%d\n\n",i,in_deg,out_deg,in_deg+out_deg); 	} // for 	return; } // dir_graph 
+
+int undir_graph() { 	int adj_mat[50][50]; 	int deg, i, j, n; 	printf("\n How Many Vertices ? : "); 	scanf("%d", &n); 	read_graph(adj_mat, n); 	printf("\n Vertex \t Degree "); 	for ( i = 1 ; i <= n ; i++ ) 	{ 		deg = 0; 		for ( j = 1 ; j <= n ; j++ ) 			if ( adj_mat[i][j] == 1) 				deg++; 		printf("\n\n %5d \t\t %d\n\n", i, deg); 	} // for 	return; } // undir_graph 
+
+int read_graph ( int adj_mat[50][50], int n ) { 	int i, j; 	char reply; 	for ( i = 1 ; i <= n ; i++ ) 	{ 		for ( j = 1 ; j <= n ; j++ ) 		{ 			if ( i == j ) 			{ 				adj_mat[i][j] = 0; 				continue; 			} // if 			printf("\n Vertices %d & %d are Adjacent ? (Y/N) :",i,j); 			flushall(); 			scanf("%c", &reply); 			if ( reply == 'y' || reply == 'Y' ) 				adj_mat[i][j] = 1; 			else 				adj_mat[i][j] = 0; 		} // for 	} // for 	return; } // read_graph 
+
+
+
+
+
+#include <stdio.h> 2  int main(int argc, char* argv[]) 3  { 4    int **adj_matrix; 5    char d; 6    int r, c, nodes; 7    printf ("== Adjacency Matrix Demo ==\n"); 8    printf ("Number of Nodes : "); 9    scanf ("%d", &nodes); 10  11    /* Dynamic allocation of matrix array */ 12    adj_matrix = (int **) malloc (sizeof(int **)*nodes); 13    if(!adj_matrix) { 14      printf ("Fatal error in memory allocation!"); 15      return -1; 16    } 17    for (r = 0; r < nodes; r++) { 18      adj_matrix[r] = (int *) malloc(sizeof(int)*nodes); 19      if(!adj_matrix[r]) { 20        printf ("Fatal error in memory allocation!"); 21        return -1; 22      } 23    } 24    for (r = 0; r < nodes; r++) { 25      for (c = 0; c < nodes; c++) { 26          adj_matrix[r][c] = 0; 27      } 28  29    } 30    r = 0; 31    c = 0; 32    printf ("Node pair format <U/D> <V1> <V2>\n"); 33    do { 34      printf ("Enter Node Pair : "); 35      fflush(stdin); 36      scanf ("%c %d %d", &d, &r, &c); 37      if (r > 0 && r <= nodes && c > 0 && c <= nodes){ 38              adj_matrix[r - 1][c - 1] = 1; 39        if(d == 'U' || d == 'u'){ 40        adj_matrix[c - 1][r - 1] = 1; 41        printf ("Undirected connection between %d to %d\n", r, c); 42        } else { 43              printf ("Directed connection from %d to %d\n", r, c); 44        } 45      } 46    }while(r > 0 && c > 0); 47  48    printf("\nAdjacency matrix\n"); 49    printf(" "); 50    for (c = 0; c < nodes; c++) { 51      printf("%.1d ", c + 1); 52    } 53    printf("\n"); 54    for (c = 0; c < nodes; c++) { 55      printf("---"); 56    } 57    printf("\n"); 58    for (r = 0; r < nodes; r++) { 59      printf("%.1d| ", r+1); 60      for (c = 0; c < nodes; c++) { 61          printf("%.1d ", adj_matrix[r][c]); 62      } 63      printf("\n"); 64    } 65    return 0; 66  }
+
+
+
+
+
+== Adjacency Matrix Demo == Number of Nodes : 5 Node pair format <U/D> <V1> <V2> Enter Node Pair : D 1 2 Directed connection from 1 to 2 Enter Node Pair : D 1 3 Directed connection from 1 to 3 Enter Node Pair : D 2 3 Directed connection from 2 to 3 Enter Node Pair : D 2 4 Directed connection from 2 to 4 Enter Node Pair : D 4 5 Directed connection from 4 to 5 Enter Node Pair : D 5 3 Directed connection from 5 to 3 Enter Node Pair : D 3 3 Directed connection from 3 to 3 Enter Node Pair : D -1 -1 Adjacency matrix 1 2 3 4 5 --------------- 1| 0 1 1 0 0 2| 0 0 1 1 0 3| 0 0 1 0 0 4| 0 0 0 0 1 5| 0 0 1 0 0
+
+== Adjacency Matrix Demo == Number of Nodes : 5 Node pair format <U/D> <V1> <V2> Enter Node Pair : U 1 2 Undirected connection between 1 to 2 Enter Node Pair : U 1 3 Undirected connection between 1 to 3 Enter Node Pair : U 2 3 Undirected connection between 2 to 3 Enter Node Pair : U 3 3 Undirected connection between 3 to 3 Enter Node Pair : U 2 4 Undirected connection between 2 to 4 Enter Node Pair : U 3 5 Undirected connection between 3 to 5 Enter Node Pair : U 4 5 Undirected connection between 4 to 5 Enter Node Pair : D -1 -1 Adjacency matrix 1 2 3 4 5 --------------- 1| 0 1 1 0 0 2| 1 0 1 1 0 3| 1 1 1 0 1 4| 0 1 0 0 1 5| 0 0 1 1 0

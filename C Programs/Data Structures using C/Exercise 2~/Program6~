@@ -1,0 +1,116 @@
+6.  Write  a  program  to  implement  insert,  delete,  search  &  display  in  circular  queue through  linked  list  representation.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#define Maxque 10
+struct Queue
+{int Item[Maxque];
+ int front,rear;
+ }q;
+
+void Insert(struct Queue *pq,int ele)
+{
+if((pq->front==0&&pq->rear==Maxque-1)||(pq->front==pq->rear+1))
+printf("Overflow");
+else
+{if(pq->front==-1)
+ pq->front=pq->rear=0;
+ else if(pq->rear==Maxque-1)
+ pq->rear=0;
+ else
+ pq->rear=pq->rear+1;
+ pq->Item[pq->rear]==ele;
+ }
+}
+
+void Delete(struct Queue *pq)
+{
+int del;
+if(pq->front==-1)
+printf("Underflow");
+else
+{del=pq->Item[pq->front];
+ if(pq->front==pq->rear)
+ pq->front=pq->rear=-1;
+ else if(pq->front==Maxque-1)
+ pq->front=0;
+ else
+ pq->front=pq->front+1;
+ printf("Deleted element is %d",del);
+ }
+}
+
+void Search(struct Queue *pq,int ele)
+{
+int i;
+if(pq->front==-1)
+{printf("\n Queue is empty"); }
+else if(pq->front>pq->rear)
+{for(i=pq->front;i<Maxque;i++)
+  {if (i==ele)
+   printf("Element found at the location = %d",i);}
+ for(i=0;i<=pq->rear;i++)
+  {if (i==ele)
+   printf("Element found at the location = %d",i); }
+  }
+else
+{for(i=pq->front;i<=pq->rear;i++)
+ {if (i==ele)
+  printf("Element found at the location = %d",i); }
+  }
+printf("\n");
+}
+
+void Display(struct Queue *pq)
+{
+int i;
+if(pq->front==-1)
+printf("Nothing have to display");
+else
+{if(pq->front>pq->rear)
+ {for(i=pq->front;i<Maxque;i++)
+  printf("\t %d",pq->Item[i]);
+  for(i=0;i<=pq->rear;i++)
+  printf("\t %d",pq->Item[i]);
+   }
+ else
+ {for(i=pq->front;i<=pq->rear;i++)
+  printf("\t %d",pq->Item[i]);
+   }
+ }
+}
+
+void main()
+{
+int ch;
+clrscr();
+q.front=-1;
+q.rear=-1;
+printf("\nCircular Queue operations using linked list\n");
+printf("1. Insert\n2. Delete\n3. Search\n4. Display\n5. Exit\n");
+while(1)
+{printf("Enter your choice:");
+ scanf("%d",&ch);
+ switch(ch)
+ {case 1: Insert(&q,4);
+                Insert(&q,7);
+                Insert(&q,3);
+                break;
+  case 2: Delete(&q);
+                break;
+  case 3: printf("\nEnter the element to be searched :");
+                scanf("%d",&ele);
+                Search(&q,ele);
+                break;
+  case 4: Display(&q);
+                break;
+  case 5: exit(1);
+  default: printf("Invalid option\n");
+  }
+ }
+getch();
+}
+
+

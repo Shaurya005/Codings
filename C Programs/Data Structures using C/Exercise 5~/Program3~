@@ -1,0 +1,76 @@
+3.  Write  a  program  to  implement  sorting  in  linked  list.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct node
+{
+ int info;
+ struct node *next;
+}*p,*q;
+typedef struct node node;
+
+node *create(node *start)
+{
+ char ch;
+ do{
+  p=(node*)malloc(sizeof(node));
+  if(p==NULL)
+  printf("Overflow");
+  else{
+   printf("Enter the info:");
+   scanf("%d",&p->info);
+   if(start!=NULL)
+   {
+    q->next=p;
+    q=p;
+   }
+   else
+   start=q=p;
+   printf("Want to insert another node?(y/n):");
+   fflush(stdin);
+   ch=getchar();
+  }
+ }while(ch!='n');
+ q->next=NULL;
+ return start;
+}
+
+void display(node *start)
+{
+ node *ptr;
+ printf("Elements of link list are....\n");
+ for(ptr=start;ptr!=NULL;ptr=ptr->next)
+ printf("%d\n",ptr->info);
+}
+
+	//SELECTION_SORTING..
+
+void sort(node *start)
+{
+ node *ptr1,*ptr2;
+ int tmp;
+ for(ptr1=start;ptr1->next!=NULL;ptr1=ptr1->next)
+ {
+ 	for(ptr2=ptr1->next;ptr2!=NULL;ptr2=ptr2->next)
+	 	if(ptr1->info>ptr2->info)
+	 	{
+	 		tmp=ptr1->info;
+	 		ptr1->info=ptr2->info;
+	 		ptr2->info=tmp;
+	 	}
+	}
+}
+
+void main()
+{
+	node *start=NULL;
+	start=create(start);
+	display(start);
+	sort(start);
+	printf("after sorting...\n");
+	display(start);
+   getch();
+}

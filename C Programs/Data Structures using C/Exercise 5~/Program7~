@@ -1,0 +1,52 @@
+7.  Write  a  program  to  implement  Quick  sort  in  array.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+int partition(int a[],int lb,int ub)
+{
+	int x=a[ub],tmp,j;
+	int i=lb-1;
+	for(j=lb;i<ub;j++)
+		if(a[j]<=x)
+		{
+			i=i+1;
+			tmp=a[i];
+			a[i]=a[j];
+			a[j]=tmp;
+		}
+	tmp=a[ub];
+	a[ub]=a[i+1];	
+	a[i+1]=tmp;
+	return i+1;
+}
+void Quicksort(int a[],int lb,int ub)
+{
+	int p;
+	if(lb<ub)
+	{
+		p=partition(a,lb,ub);
+		Quicksort(a,lb,p-1);
+		Quicksort(a,p+1,ub);
+	}
+}
+void main()
+{
+	int a[25],n,i,lb,ub;
+	printf("enter number of item to be inserted in array:");
+	scanf("%d",&n);
+	printf("insert items in array...\n");
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	printf("original(may be unsorted) array is...\n");
+	for(i=0;i<n;i++)
+	printf("\t%d",a[i]);
+	lb=0;
+	ub=n-1;
+	printf("\nsorted array is...\n");
+	Quicksort(a,lb,ub);
+	for(i=0;i<n;i++)
+	printf("\t%d",a[i]);
+	getch();
+}

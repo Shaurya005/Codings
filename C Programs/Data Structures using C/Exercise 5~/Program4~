@@ -1,0 +1,33 @@
+4.  Write  a  program  to  implement  Bubble  sort  in  array.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+void sort(int a[],int n)
+{
+	int i,j,temp=0;
+	for(i=0;i<n-1;i++)
+	{for(j=0;j<n-i-1;j++)
+	 {if(a[j]>a[j+1])
+	  {
+		tmp=a[j];
+		a[j]=a[j+1];
+		a[j+1]=tmp;
+    	}}}
+printf("Your Sorted Array is ");
+for(i=0;i<n;i++)
+printf("%d",a[i]);
+}
+
+void main()
+{
+	int b[40],m,i;
+	printf("Enter number of elements");
+	scanf("%d",&n);
+	printf("Enter elements\n");
+	for(i=0;i<m;i++)
+	scanf("%d",&a[i]);
+	sort(b,m);
+    getch();
+}

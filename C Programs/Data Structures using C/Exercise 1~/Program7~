@@ -1,0 +1,146 @@
+7. Write a menu driven program to perform uppercase, lowercase, length,copy & concatenation in string by using string.h.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+
+void main()
+{char str[20],str1[20];
+ int ch,i,j;
+ clrscr();
+ do
+ {
+  printf("\n*****MENU*****");
+  printf("\n1.Find Uppercase");
+  printf("\n2.Find Lowercase");
+  printf("\n3.Find Length");
+  printf("\n4.Copy the Strings");  
+  printf("\n5.Concatenate the Strings");
+  printf("\n6.Exit");
+  printf("\nEnter your choice: ");
+  scanf("%d",&ch);
+  switch(ch)
+  {
+ case1:
+ {printf("\nEnter the string: ");
+  scanf("%s",&str);
+  printf("The Upper Case of String is : %s",strupr(str));
+  break;
+ }
+ case2:
+ {printf("\nEnter the string: ");
+  scanf("%s",&str);
+  printf("The Lower Case of String is : %s",strlwr(str));
+  break;
+ }
+ case 3:
+ {printf("\nEnter the string: ");
+  scanf("%s",&str);
+  i=strlen(str);
+  printf("\nThe Length of given string is: %d",i);
+  break;
+ }
+ case 4:
+ {printf("\nEnter the first string: ");
+  scanf("%s",&str);
+  printf("\nEnter the second string: ");
+  scanf("%s",&str1);
+  strcpy(str,str1);
+  printf("\nThe Copied string is: %s",str);
+  break;
+ }
+ case 5:
+ {printf("\nEnter the first string: ");
+  scanf("%s",&str);
+  printf("\nEnter the second string: ");
+  scanf("%s",&str1);
+  strcat(str,str1);
+  printf("\nThe Concatenated string is: %s",str);
+  break;
+ }
+ case 6:
+ {exit(0);
+  break;
+ }
+ default:
+ {printf("\n Invalid option."); }
+ }
+}while(ch!=6);
+getch();
+}
+
+
+
+
+
+//OUTPUT:
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 1
+ //Enter the string: ViKAs
+ //The Upper Case of String is : VIKAS
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 2
+ //Enter the string: ViKAs
+ //The Lower Case of String is : vikas
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 3
+ //Enter the string: VINIT
+ //The length of given string is: 5
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 4
+ //Enter the first string: VINIT
+ //Enter the Second string: JAIN
+ //The Copied string is: JAIN
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 5
+ //Enter the first string: VINIT
+ //Enter the second string: JAIN
+ //The Concatenated string is: VINIT JAIN
+
+//****MENU****
+//1.Find Uppercase
+//2.Find Lowercase
+//3.Find length
+//4.Copy the strings
+//5.Concatenate the Strings
+//6.Exit
+ //Enter your choice: 6
+
+

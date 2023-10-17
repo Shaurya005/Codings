@@ -1,0 +1,26 @@
+8.  Write  a  recursive  function  to  solve  Tower  of  Hanoi.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<process.h>
+
+void TOH(int n,char Beg,char Aux,char End)
+{
+	if(n==1)
+	{ printf("%c->%c\n",Beg,End);
+	  return;}
+	else
+	{ TOH(n-1,Beg,End,Aux);
+		printf("%c->%c\n",Beg,End);
+		TOH(n-1,Aux,Beg,End);}
+}
+void main()
+{ int m;
+   char A,B,C;
+	printf("Enter number of elements");
+	scanf("%d",&m);
+	TOH(m,'A','B','C');
+	getch();
+}

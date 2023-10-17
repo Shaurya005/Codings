@@ -1,0 +1,96 @@
+9.  Write  a  program  to  implement  queue  through  doubly  linked  list.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+struct queue
+{
+int data;
+struct queue *prev;
+struct queue *next;
+};
+typedef struct queue *Queue;
+Queue first=NULL,temp,last;
+
+void queue_in(int data)
+{
+temp=(struct queue*)malloc(sizeof(struct queue));
+temp->data=data;
+temp->next=NULL;
+if(first==NULL)
+{first=last=temp;
+ first->prev=NULL;
+ return;
+ }
+else
+{last->next=temp;
+ temp->prev=last;
+ last=temp;
+ }
+}
+
+int queue_out()
+{
+int data;
+if(first==NULL)
+{printf("\n\n Queue is empty\n\n");
+ return 0;
+ }
+if(first==last)
+{data=first->data;
+ free(first);
+ first=NULL;
+ return data;
+ }
+temp=first;
+data=temp->data;
+first=first->next;
+free(temp);
+return data;
+}
+
+void display()
+{
+if(first==NULL)
+{printf("\n\n Queue is empty\n\n");
+ return;
+ }
+printf("Queue data's \n");
+temp=first;
+while(temp != NULL)
+{printf("%d\n",temp->data);
+ temp=temp->next;
+ }
+}
+
+void main()
+{
+int data,select;
+clrscr();
+while(1)
+{printf(" 1:Queue_in\n 2:Queue_out\n 3:Display all data\n 4:Exit\n\t");
+ scanf("%d",&select);
+ switch(select)
+ {case 1:
+  printf("Enter the data:");
+  scanf("%d",&data);
+  queue_in(data);
+  break;
+
+  case 2: data=queue_out();
+  if(data==0)
+  break;
+  printf("\n Queue out data:%d\n\n",data);
+  break;
+  
+  case 3: 
+  display();
+   break;
+  
+   case 4:
+   break;
+  }}
+getch();
+}

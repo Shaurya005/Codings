@@ -1,0 +1,96 @@
+1.  Write  a  program  to  implement  sequential  representation  of  binary  tree.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+struct tree
+{
+ char info;
+ struct tree *left;
+ struct tree *right;
+}*root,*p;
+typedef struct tree Tree;
+
+void insert(Tree *r,Tree *q)
+{
+ char ch;
+ printf("insert at left or right(L/R)?:\n");
+ fflush(stdin);
+ ch=getchar();
+ if(ch=='l' || ch=='L')
+ {
+  if(r->left==NULL)
+  r->left=q;
+  else
+  insert(r->left,q);
+   }
+ else
+ {
+  if(r->right==NULL)
+  r->right=q;
+  else
+  insert(r->right,q);
+   }
+}
+
+void preorder(Tree *r)
+{
+ if(r!=NULL)
+ {
+  printf("\t%c",r->info);
+  preorder(r->left);
+  preorder(r->right);
+ }
+}
+
+void inorder(Tree *r)
+{
+ if(r!=NULL)
+ {
+  inorder(r->left);
+  printf("\t%c",r->info);
+  inorder(r->right);
+ }
+}
+
+void postorder(Tree *r)
+{
+ if(r!=NULL)
+ {
+  postorder(r->left);
+  postorder(r->right);
+  printf("\t%c",r->info);
+ }
+}
+
+void main()
+{
+ char ch;
+ clrscr();
+ root=NULL;
+ do{
+  p=(Tree*)malloc(sizeof(Tree));
+  p->left=NULL;
+  p->right=NULL;
+  printf("Enter the info\n");
+  fflush(stdin);
+  scanf("%c",&p->info);
+  if(root==NULL)
+  root=p;
+  else
+  insert(root,p);
+  printf("Do you want another node?(y/n):");
+  fflush(stdin);
+  ch=getchar();
+ }while(ch!='n');
+ preorder(root);
+ printf("\n");
+ inorder(root);
+ printf("\n");
+ postorder(root);
+ getch();
+}
+
+

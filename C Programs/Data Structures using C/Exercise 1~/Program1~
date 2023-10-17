@@ -1,0 +1,77 @@
+1. Write a program to add, multiply, transpose two NXM matrices.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{ int p,q,r,s,a[20][20],b[20][20],i,j,sum[20][20],tr[20][20],ch; 
+ clrscr();
+printf("Note : For Addition or Multiplication , no. of rows and columns should be same and for transpose of matrices , your first matrices entered should be the desired matrices .\n");
+printf("Enter the no. of rows for first matrices: \n");
+scanf("%d",&p);
+printf("Enter the no. of columns for first matrices: ");
+scanf("%d",&q);
+printf("Enter the Data Elements of first matrices\n");
+for(i=0;i<p;i++)
+{ for(j=0;j<q;j++)
+ { scanf("%d",&a[i][j]); } }
+printf("Enter the no. of rows for second matrices: \n");
+scanf("%d",&r);
+printf("Enter the no. of columns for second matrices: ");
+scanf("%d",&s);
+printf("Enter the Data Elements of second matrices\n");
+for(i=0;i<r;i++) 
+{ for(j=0;j<s;j++) 
+ { scanf("%d",&b[i][j]); } }
+do
+{ if(p==r&&q==s) 
+  { printf("Enter 1 for addtion or subtraction of matrices\n");
+   if(q==r){printf("Enter 2 for multiplication of matrices\n");}
+   printf("Enter 3 for transpose of first matrices\n"); } 
+ else if(p!=q&&q==r)
+  { printf("Enter 2 for multiplication of matrices\n");
+    printf("Enter 3 for transpose of first matrices\n"); }
+else
+   { printf("Enter 3 for transpose of first matrices\n"); }
+scanf("%d",&ch);
+switch(ch)
+{
+case 1 :
+  for(i=0;i<p;i++)
+  { for(j=0;j<q;j++)
+  { sum[i][j]=a[i][j]+b[i][j];} }
+  printf("The resultant matrices is :\n");
+  for(i=0;i<p;i++)
+  {for(j=0;j<q;j++)
+  {printf("%3d",sum[i][j]); }
+  printf("\n"); }
+  break;
+case 2 :
+
+  printf("The resultant matrices is : \n");
+  int k;
+  for(i=0;i<p;i++) 
+  { for(j=0;j<s;j++)
+  { sum[i][j]=0;
+  for(k=0;k<p;k++) 
+  { sum[i][j]+=a[i][k]*b[k][j]; }
+  printf("%d\t",sum[i][j]); }
+  printf("\n"); }
+  break;
+case 3 :
+
+ for(i=0;i<p;i++)
+ { for(j=0;j<q;j++)
+ { tr[j][i]=a[i][j]; } }
+ printf("The resultant matrices is :\n");
+ for(i=0;i<q;i++)
+ { for(j=0;j<p;j++)
+ { printf("%3d",tr[i][j]); }
+ printf("\n"); }
+ break; }}
+while(ch>0);
+getch();
+}
+
+

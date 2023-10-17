@@ -1,0 +1,33 @@
+3. Write a program to find the position of a substring within another string.
+
+
+
+#include<stdio.h>
+#include<string.h>
+void main()
+{char str[20] , pat[20] ;
+ int i=0,j,k=0 ;
+ printf("Enter the first string :");
+ gets(str);       // input main string
+ printf("\n Enter the 2nd string : ");
+ gets(pat);     //input sub-string or pattern
+ while(str[i]!='\0')
+ {     //if first character matches
+  if(str[i]==pat[0])
+ { j=1;
+     //if next character of string and pattern same
+ while(pat[j]!='\0' && str[j+i]!='\0' && pat[j]== str[j+i]) 
+ { j++;
+ k=1; }
+if(pat[j]=='\0')
+printf("pattern string found at %d position " , i+1);
+}
+i++;
+if(k==0)
+{ if(str[j+i]=='\0')
+printf("pattern not found "); }
+}
+getch();
+}
+
+

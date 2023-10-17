@@ -1,0 +1,81 @@
+9. Write a program to implement Heap sort in array.
+
+
+
+#include<stdio.h>
+#include<conio.h>
+buildheap(int data[],int n,int item)
+{
+	n=n+1;
+	int par,ptr=n;
+	while(ptr>1)
+	{
+		par=ptr/2;
+		if(item<=data[par])
+		{data[ptr]=item;
+		}
+		data[ptr]=data[par];
+		ptr=par;
+	}
+	data[1]=item;
+	return n;
+}
+void heapsort(int data[],int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	buildheap(data,i,data[i]);
+	/*while(n>0)
+	{
+		deleteheap(data,n);
+		data[n]=item;
+	}*/
+	
+}
+
+void display(int data[],int n)
+{
+	int i;
+	for(i=0;i<n;i++)
+	printf("%d\t",data[i]);
+	printf("\n");
+}
+
+deleteheap(int tree[],int n,int item)
+{item=tree[1];
+ int ptr=1,last,left=2,right=3;
+ last=tree[n];
+ n=n-1;
+ while(right<=n)
+ {if((last>=tree[left])&&(last>=tree[right]))
+  {tree[ptr]=last;}
+  if(tree[right]=<tree[left])
+  {tree[ptr]=tree[left];
+   ptr=left;}
+  else
+  {tree[ptr]=tree[right];
+   ptr=right;}
+  left=2*ptr;
+  right=left+1;
+  }
+ if((left==n)&&(last=<tree[left]))
+ {ptr=left; }
+ tree[ptr]=last;
+ return;
+}
+
+void main()
+{
+	int data[25],n,i;
+	printf("enter number of items:");
+	scanf("%d",&n);
+	printf("insert items...\n");
+	for(i=0;i<n;i++)
+	scanf("%d",&data[i]);
+	printf("original(may be unsorted) array is...\n");
+	display(data,n);
+	printf("\nsorted array is...\n");
+	heapsort(data,n);
+	display(data,n);
+	getch();
+}
